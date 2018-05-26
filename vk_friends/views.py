@@ -2,7 +2,6 @@ import requests
 from django.contrib.auth import logout
 from django.shortcuts import render
 from allauth.socialaccount.models import SocialToken
-from django.template import Context
 
 
 def index(request):
@@ -23,5 +22,4 @@ def index(request):
             logout(request)
         else:             # else put user in contexts['users'] for render
             context['users'] = r['response']['items']
-        print(r)
     return render(request, "index.html", context)
