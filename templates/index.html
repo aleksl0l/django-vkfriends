@@ -1,0 +1,41 @@
+{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+
+    <title>
+        {% if user.is_authenticated %}
+            Thank you for sign in!
+        {% else %}
+            Please sign in!
+        {% endif %}
+    </title>
+</head>
+<body>
+
+ <div class="container">
+    {% if user.is_authenticated %}
+            <p>Welcome, {{ user.get_username }}</p>
+            {% for user in users %}
+                <div class="friends_user_row">
+                    <img class="friends_photo_img" src="{{ user.photo_100 }}">
+                    <a target="_blank" href="https://vk.com/id{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a>
+                </div>
+            {% endfor %}
+
+    {% else %}
+        <div class="button">
+            <a class="btn btn-primary" href="{% provider_login_url "vk" method="oauth2" %}">
+                <span class="fa fa-vk">Login</span>
+            </a>
+        </div>
+    {% endif %}
+ </div>
+
+
+</body>
+</html>
