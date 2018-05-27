@@ -17,7 +17,9 @@ def index(request):
             'order': 'random',
             'access_token': token
         }
+
         r = requests.get('https://api.vk.com/method/friends.get', args).json()  # get request to VK
+        print(r)
         if 'error' in r:  # logout if something go wrong
             logout(request)
         else:             # else put user in contexts['users'] for render

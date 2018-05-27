@@ -37,6 +37,12 @@ AUTHENTICATION_BACKENDS = (
 # Application definition
 LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000'
 
+SOCIALACCOUNT_PROVIDERS = {
+    'vk': {
+        'SCOPE': ['offline'],
+    }
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
